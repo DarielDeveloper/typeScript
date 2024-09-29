@@ -1,5 +1,5 @@
 /*
-Typescript es un lenguaje de programcion creado por Microsoft, no sirve para validar datos en tiempo de ejecucion. Es un lenguaje estatico y solo funciona en tiempo de compilacion.
+Typescript es un lenguaje de programación creado por Microsoft, no sirve para validar datos en tiempo de ejecución. Es un lenguaje estático y solo funciona en tiempo de compilación.
 
 ´*/
 //Inferencia
@@ -17,14 +17,14 @@ let cadenatexto = "hola";
 let obj: any = { x: 0 };
 
 //function
-//Los parametros se debe decir el tipo porque si no obtiene el tipo any
+//Los parámetros se debe decir el tipo porque si no obtiene el tipo any
 function saludar(name: string) {
   console.log(`Hola ${name}`);
 }
 //saludar('Dariel');
-//Incorecto el llamdo por el tipo de parametro, la function espera un string no un number saludar(2);
+//Incorrecto el llamado por el tipo de parámetro, la function espera un string no un number saludar(2);
 
-//En caso de que el parametro es un Object
+//En caso de que el parámetro es un Object
 //1 forma
 //Para especificar el tipo
 function saludarObject({ name, age }: { name: string; age: number }) {}
@@ -35,19 +35,19 @@ function saludarObjectPersona(persona: { name: string; age: number }) {
   const { name, age } = persona;
 }
 
-//En caso de que sea una function de parametro para el tipado es:
+//En caso de que sea una function de parámetro para el tipado es:
 const sayHi = (name: string) => {
   console.log(`Hola ${name}`);
 };
 
 //Otra forma es:
-//Hay que tener precausion con la respuesta de la function
+//Hay que tener precaución con la respuesta de la function
 const sayHiFromFunction = (fn: (name: string) => void) => {
   fn("Dariel");
 };
 
 //Tipar las arrow function
-//1 forma y mejor para leer el codigo
+//1 forma y mejor para leer el código
 const sumar = (a: number, b: number): number => {
   return a + b;
 };
@@ -77,7 +77,7 @@ type Hero = {
   readonly id?: string; // readonly le indicas a la propiedad que es solo lectura por lo que advierte cuando se trata de inmutar la propiedad.
   name: string;
   power: number;
-  isActive?: boolean; //Propiedad que no es requeridad al crear un Hero
+  isActive?: boolean; //Propiedad que no es requerida al crear un Hero
 };
 
 let hero: Hero = {
@@ -99,7 +99,7 @@ const thor = createHero({ name: "Thor", power: 4000 });
 
 //Union Types
 type HeroPowerScale = "local" | "planetary" | "galactic" | "universal";
-//Para que no se de error debe escoger los que estan declarado en el HeroPowerScale
+//Para que no se de error debe escoger los que están declarado en el HeroPowerScale
 let powerHero: HeroPowerScale = "local";
 
 //Type Indexing
