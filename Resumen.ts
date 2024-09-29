@@ -145,13 +145,15 @@ const matrizEjemplo: string[][] = [];
 //Tuplas
 //Es como un esquema a seguir
 //Ejemplo
-type CellValue = "X" | "O" | "";
+type CellValue = "X" | "O" | ""; //Especifico los valores permitidos
+//Creando tupla
 type GameBoard = [
   [CellValue, CellValue, CellValue],
   [CellValue, CellValue, CellValue],
   [CellValue, CellValue, CellValue]
 ];
 
+//Creando array que require GameBoard que es una tupla
 const gameBoard: GameBoard = [
   ["X", "X", "O"],
   ["X", "X", "O"],
