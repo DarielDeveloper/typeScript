@@ -49,8 +49,87 @@ const buscar = (param: typeof arregloValores): void => {
   });
 };
 
-/*OJO */
-//type es una palabra reservada de typescript para crear custom type
-
 //Enum
 // Es un tipo por lo que se puede Tipar
+enum NIENUM {
+  ARG = "passport",
+  ES = "nie",
+}
+//Ejemplo de Tipar con enum
+const dimeELNI = (ni: NIENUM) => ni;
+//Aceptando el enum
+dimeELNI(NIENUM.ARG);
+
+/*OJO */
+//type es una palabra reservada de typescript para crear custom type
+type ARG = string; //Esto es conocido como alias ya que cuando se utilice el type ARG y se decida cambiar el tipo a number ejemplo solo se cambia en la declaración
+//Ejemplo de unionType
+type NITYPE = "passport" | "nie";
+
+//Son los elementos que se comparten entre string y number
+type A = string | number;
+
+//Son los elementos que se suman entre string y number
+type B = string & number;
+
+//Diferencias entre unknown y any
+//unknown
+let numero: unknown = 1;
+//Cuando vas a usar la variable n de tipo unknown tienes que castear una de las formas es <type>var
+let suma = (n: unknown) => <number>n + 1;
+
+//any
+let numero2: any = "2";
+//Estas declarando la variable con tipado dinámico ya que puede coger cualquier tipo, al usar la variable no va haber quejas ya que declaraste que es de tipo any
+
+/* OJO */
+//En typescript trata de generalizar para tipar de esta forma le estas diciendo que es solo de lectura y va tomar de valor ["rojo", "azul", "amarillo"]. Si quitas el as const te va decir que es de tipo string [].
+const colores = ["rojo", "azul", "amarillo"] as const;
+
+//Se utiliza mucho en variables de configuración ya que pone la variable en solo lectura
+//Ejemplo
+function configuration() {
+  return {
+    modo: "prod",
+    version: "1.0",
+    depurar: false,
+  } as const;
+}
+const obtenerConfig = configuration();
+//obtenerConfig.depurar = true; No puedes modificar la propiedad
+
+//Genérico
+const metodo = <T>(x: T): T => x;
+const a = metodo<number>(1);
+const b = metodo<string>("1");
+
+//functional overloading
+//Solo se hace con funciones
+function metodoStringOrNumber(x: string): number;
+function metodoStringOrNumber(x: number): string;
+function metodoStringOrNumber(x: string | number): number | string {
+  if (typeof x === "number") {
+    return x.toString();
+  }
+  if (typeof x === "string") {
+    return x.length;
+  }
+  return x;
+}
+
+//Ejemplo que no se puede usar interface
+enum Claver {
+  name = "name",
+  raza = "raza",
+}
+//Has todo con interface HAST que no puedas y ahi usa type
+type Mamal = {
+  [key in Claver]: string;
+};
+
+//Haciendo un tipo que dependa de una propiedad para el resultado de la función
+type Dependant<T extends { properties: any }> = T["properties"];
+type Independant = {
+  properties: string;
+};
+const dependant: Dependant<Independant> = "1";
